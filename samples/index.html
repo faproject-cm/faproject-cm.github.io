@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>制作例｜FA Project</title>
+<meta name="description" content="FA Projectが全編AIで制作したテレビCM・WebCMの制作例。撮影なし・従来の1/10の費用・最短1週間。">
+<meta name="robots" content="noindex">
+<style>
+:root{--bg:#0b0d10;--fg:#f4f5f7;--mute:#9aa3ad;--line:#232830;--accent:#ffcc33}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--bg);color:var(--fg)}
+body{font-family:-apple-system,BlinkMacSystemFont,"Helvetica Neue","Hiragino Sans","Hiragino Kaku Gothic ProN","Noto Sans JP",Meiryo,sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1200px;margin:0 auto;padding:40px 16px 56px}
+header{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:8px 20px;margin-bottom:22px;padding-bottom:16px;border-bottom:1px solid var(--line)}
+h1{font-size:22px;font-weight:700;letter-spacing:.02em}
+h1 small{display:block;font-size:13px;font-weight:400;color:var(--mute);margin-top:2px}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tags span{font-size:13px;font-weight:700;color:#111;background:var(--accent);border-radius:999px;padding:3px 12px}
+.grid{display:grid;grid-template-columns:1fr;gap:18px}
+@media (min-width:700px){.grid{grid-template-columns:1fr 1fr;gap:22px}}
+figure{background:#000;border-radius:12px;overflow:hidden;border:1px solid var(--line)}
+video{display:block;width:100%;aspect-ratio:16/9;background:#000}
+figcaption{display:flex;justify-content:space-between;font-size:13px;color:var(--mute);padding:8px 12px;background:#12151a}
+footer{margin-top:36px;padding-top:18px;border-top:1px solid var(--line);font-size:14px;color:var(--mute);display:flex;flex-wrap:wrap;gap:6px 24px;justify-content:space-between}
+footer a{color:var(--fg);text-decoration:underline;text-underline-offset:3px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>FA Project 制作例<small>テレビCM・WebCM／すべて撮影なし・全編AI制作</small></h1>
+  <div class="tags"><span>撮影なし</span><span>従来の1/10の費用</span><span>最短1週間</span></div>
+</header>
+
+<div class="grid">
+  <figure><video src="../media/reel1.mp4" poster="../media/reel1.jpg" preload="metadata" playsinline controls></video><figcaption><span>SAMPLE 1</span><span>44秒</span></figcaption></figure>
+  <figure><video src="../media/reel2.mp4" poster="../media/reel2.jpg" preload="metadata" playsinline controls></video><figcaption><span>SAMPLE 2</span><span>31秒</span></figcaption></figure>
+  <figure><video src="../media/reel3.mp4" poster="../media/reel3.jpg" preload="metadata" playsinline controls></video><figcaption><span>SAMPLE 3</span><span>24秒</span></figcaption></figure>
+  <figure><video src="../media/reel4.mp4" poster="../media/reel4.jpg" preload="metadata" playsinline controls></video><figcaption><span>SAMPLE 4</span><span>16秒</span></figcaption></figure>
+  <figure><video src="../media/reel5.mp4" poster="../media/reel5.jpg" preload="metadata" playsinline controls></video><figcaption><span>SAMPLE 5</span><span>32秒</span></figcaption></figure>
+  <figure><video src="../media/reel6.mp4" poster="../media/reel6.jpg" preload="metadata" playsinline controls></video><figcaption><span>SAMPLE 6</span><span>9秒</span></figcaption></figure>
+</div>
+
+<footer>
+  <span>株式会社FA Project（KeyHolderグループ）</span>
+  <a href="https://faproject.co.jp/" target="_blank" rel="noopener">会社HP</a>
+</footer>
+</div>
+<script>
+// 1本再生したら他は止める
+document.querySelectorAll('video').forEach(v=>v.addEventListener('play',()=>{document.querySelectorAll('video').forEach(o=>{if(o!==v)o.pause()})}));
+</script>
+</body>
+</html>
