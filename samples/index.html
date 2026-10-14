@@ -85,6 +85,7 @@ document.querySelectorAll('video').forEach(v=>v.addEventListener('play',()=>{doc
 
   send({kind:'view',ref:ref,dev:dev});
 
+  var flushers=[];
   // 動画ごとの累計再生秒（currentTime の進みを足す。シーク・止まっている間は数えない）
   document.querySelectorAll('video').forEach(function(v){
     var name=((v.getAttribute('src')||'').split('/').pop()||'').replace(/\.[^.]*$/,'')||'video';
@@ -101,6 +102,11 @@ document.querySelectorAll('video').forEach(v=>v.addEventListener('play',()=>{doc
       // 秒数は前回送ってからの増分（集計側で足し算する）
       if(s-sent>=3){var inc=s-sent;sent=s;send({kind:'watch',video:name,sec:inc})}
     }
+    // 離脱時: 未送信の増分が1秒以上あれば sendBeacon で送る（3秒しきい値はここだけ無視）
+    flushers.push(function(){
+      var s=Math.floor(acc);
+      if(s-sent>=1){var inc=s-sent;sent=s;beacon({kind:'watch',video:name,sec:inc})}
+    });
     v.addEventListener('pause',report);
     v.addEventListener('ended',report);
   });
@@ -123,6 +129,7 @@ document.querySelectorAll('video').forEach(v=>v.addEventListener('play',()=>{doc
     if(left)return;
     left=true;
     onScroll();
+    flushers.forEach(function(f){try{f()}catch(e){}});
     beacon({kind:'leave',video:'scroll'+maxScroll,sec:Math.round((Date.now()-t0)/1000)});
   }
   window.addEventListener('pagehide',leave);
